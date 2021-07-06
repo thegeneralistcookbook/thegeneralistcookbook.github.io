@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Adobe Acrobat ConnectorIcons :: The Generalist Cookbook</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Adobe Acrobat filling up a ConnectorIcons folder in the user profile" />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/posts/clear-adobe-connectoricons/" />
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+  <link rel="stylesheet" href="/assets/blue.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon" href="/img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="/img/favicon/blue.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Adobe Acrobat ConnectorIcons">
+<meta property="og:description" content="Adobe Acrobat filling up a ConnectorIcons folder in the user profile" />
+<meta property="og:url" content="/posts/clear-adobe-connectoricons/" />
+<meta property="og:site_name" content="The Generalist Cookbook" />
+
+  
+    <meta property="og:image" content="/img/favicon/blue.png">
+  
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+  <meta property="article:published_time" content="2021-07-06 12:29:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="blue">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    generalist cookbook
+  </div>
+</a>
+
+    </div>
+    
+  </div>
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="/posts/clear-adobe-connectoricons/">Adobe Acrobat ConnectorIcons</a></h1>
+  <div class="post-meta">
+    
+      <span class="post-date">
+        2021-07-06 
+      </span>
+    
+    
+  </div>
+
+  
+
+  
+
+  
+
+  <div class="post-content"><div>
+        <ul>
+<li>I have seen this a lot on Citrix app servers, not so much RDS boxes for some reason, the user&rsquo;s profiles will fill up because of:</li>
+</ul>
+<blockquote>
+<p>C:\Users\xyz\AppData\LocalLow\Adobe\Acrobat\DC\ConnectorIcons\xyz.bmp</p>
+</blockquote>
+<ul>
+<li>
+<p>Still not sure what causes this but they are just cached icons of documents</p>
+</li>
+<li>
+<p>You can safely delete them for all users using the following powershell script:</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-ChildItem C:\Users | Foreach-Object { Remove-Item -Path <span style="color:#e6db74">&#34;C:\Users\$_\AppData\LocalLow\Adobe\Acrobat\DC\ConnectorIcons\*.bmp&#34;</span> -ErrorAction SilentlyContinue -Force -Recurse }
+</code></pre></div><ul>
+<li>Can even make it a scheduled task - who cares</li>
+</ul>
+
+      </div></div>
+
+  
+  
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="/posts/rclone-on-windows/">
+                <span class="button__text">Rclone on Windows</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2021 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

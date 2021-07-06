@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Generalist Cookbook</title>
+    <link>/</link>
+    <description>Recent content on The Generalist Cookbook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 06 Jul 2021 12:29:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adobe Acrobat ConnectorIcons</title>
+      <link>/posts/clear-adobe-connectoricons/</link>
+      <pubDate>Tue, 06 Jul 2021 12:29:00 +0000</pubDate>
+      
+      <guid>/posts/clear-adobe-connectoricons/</guid>
+      <description>I have seen this a lot on Citrix app servers, not so much RDS boxes for some reason, the user&amp;rsquo;s profiles will fill up because of:   C:\Users\xyz\AppData\LocalLow\Adobe\Acrobat\DC\ConnectorIcons\xyz.bmp
+   Still not sure what causes this but they are just cached icons of documents
+  You can safely delete them for all users using the following powershell script:
+  Get-ChildItem C:\Users | Foreach-Object { Remove-Item -Path &amp;#34;C:\Users\$_\AppData\LocalLow\Adobe\Acrobat\DC\ConnectorIcons\*.</description>
+      <content>&lt;ul&gt;
+&lt;li&gt;I have seen this a lot on Citrix app servers, not so much RDS boxes for some reason, the user&amp;rsquo;s profiles will fill up because of:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;C:\Users\xyz\AppData\LocalLow\Adobe\Acrobat\DC\ConnectorIcons\xyz.bmp&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Still not sure what causes this but they are just cached icons of documents&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You can safely delete them for all users using the following powershell script:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;Get-ChildItem C:\Users | Foreach-Object { Remove-Item -Path &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C:\Users\$_\AppData\LocalLow\Adobe\Acrobat\DC\ConnectorIcons\*.bmp&amp;#34;&lt;/span&gt; -ErrorAction SilentlyContinue -Force -Recurse }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Can even make it a scheduled task - who cares&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Rclone on Windows</title>
+      <link>/posts/rclone-on-windows/</link>
+      <pubDate>Tue, 06 Jul 2021 11:56:19 +0000</pubDate>
+      
+      <guid>/posts/rclone-on-windows/</guid>
+      <description>You can deploy Rclone on any Windows version using the WinFsp signed driver to provide access to anything Rclone is enabled for, including the Rclone crypt functionality, as a &amp;ldquo;mapped drive.&amp;rdquo;
+This is also great on legacy Windows versions that don&amp;rsquo;t support Files On-Demand.
+Most of this process is scripted to facilitate bulk deployments.
+  Use below script to download, install and move required programs and files into place.  $e=&amp;#34;${env:SYSTEMDRIVE}\TempSPMount&amp;#34; mkdir $e; cd $e # Download and extract rclone  Invoke-WebRequest -UseBasicParsing https://downloads.</description>
+      <content>&lt;p&gt;You can deploy Rclone on any Windows version using the &lt;a href=&#34;https://github.com/billziss-gh/winfsp&#34;&gt;WinFsp&lt;/a&gt; signed driver to provide access to anything Rclone is enabled for, including the &lt;a href=&#34;https://rclone.org/crypt/&#34;&gt;Rclone crypt&lt;/a&gt; functionality, as a &amp;ldquo;mapped drive.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;This is also great on legacy Windows versions that don&amp;rsquo;t support &lt;a href=&#34;https://support.microsoft.com/en-us/office/sync-files-with-onedrive-files-on-demand-62e8d748-7877-420f-b600-24b56562aa70&#34;&gt;Files On-Demand&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Most of this process is scripted to facilitate bulk deployments.&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;Use below script to download, install and move required programs and files into place.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;$e=&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;${env:SYSTEMDRIVE}\TempSPMount&amp;#34;&lt;/span&gt;
+mkdir $e; cd $e
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# Download and extract rclone &lt;/span&gt;
+Invoke-WebRequest -UseBasicParsing https&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;//downloads.rclone.org/rclone-current-windows-amd64.zip -OutFile rclone-v1.55.1-windows-amd64.zip
+Expand-Archive rclone-v1.55.1-windows-amd64.zip .
+mv .\rclone-v*\*.exe .
+rm rclone-* -Recurse -Force
+
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# Download and install WinFSP&lt;/span&gt;
+Invoke-WebRequest -UseBasicParsing https&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;//github.com/billziss-gh/winfsp/releases/download/v1.9/winfsp-1.9.21096.msi -OutFile winfsp-1.9.21096.msi
+msiexec.exe /i winfsp-1.9.21096.msi
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# Download and extract nircmd&lt;/span&gt;
+Invoke-WebRequest -UseBasicParsing https&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;//www.nirsoft.net/utils/nircmd-x64.zip -OutFile nircmd.zip
+Expand-Archive nircmd.zip
+mv nircmd/nircmd.exe .
+rm nircmd -Recurse -Force
+rm nircmd.zip -Force 
+
+.\rclone.exe config
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Follow the Rclone configuration wizard to mount your drive and make a note of what you called it initially&lt;/li&gt;
+&lt;li&gt;Create a scheduled task to mount your drive on login using the below syntax for the command&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;yourpath\nircmd.exe&amp;#34;&lt;/span&gt; exec hide &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;yourpath\rclone.exe&amp;#34;&lt;/span&gt; mount TempSPMount&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;/ X: --vfs-cache-mode writes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Your desired storage will be mounted as the &amp;ldquo;X:&amp;rdquo; drive on the Windows user&amp;rsquo;s computer on sign in.&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>
