@@ -6,7 +6,31 @@
     <description>Recent content on The Generalist Cookbook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 06 Jul 2021 12:29:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Jul 2021 16:11:25 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Incomplete list of X-Forwarded-For style headers</title>
+      <link>/posts/x-forwarded-for/</link>
+      <pubDate>Sat, 24 Jul 2021 16:11:25 +0000</pubDate>
+      
+      <guid>/posts/x-forwarded-for/</guid>
+      <description>These HTTP headers can be used to trick a misconfigured web server into thinking you are a proxy for another connection
+X-Originating-IP X-Forwarded-For X-Remote-IP X-Remote-Addr X-Client-IP X-Forwarded-Host X-Real-IP True-Client-IP CF-Connecting-IP X-Cluster-Client-IP Fastly-Client-IP Forwarded </description>
+      <content>&lt;p&gt;These HTTP headers can be used to trick a misconfigured web server into thinking you are a proxy for another connection&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;X-Originating-IP
+X-Forwarded-For
+X-Remote-IP
+X-Remote-Addr
+X-Client-IP
+X-Forwarded-Host
+X-Real-IP
+True-Client-IP
+CF-Connecting-IP
+X-Cluster-Client-IP
+Fastly-Client-IP
+Forwarded
+&lt;/code&gt;&lt;/pre&gt;</content>
+    </item>
+    
     <item>
       <title>Adobe Acrobat ConnectorIcons</title>
       <link>/posts/clear-adobe-connectoricons/</link>

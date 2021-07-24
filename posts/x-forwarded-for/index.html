@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   
-    <title>Adobe Acrobat ConnectorIcons :: The Generalist Cookbook</title>
+    <title>Incomplete list of X-Forwarded-For style headers :: The Generalist Cookbook</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Adobe Acrobat filling up a ConnectorIcons folder in the user profile" />
+<meta name="description" content="These HTTP headers can be used to trick a misconfigured web server into thinking you are a proxy for another connection
+X-Originating-IP X-Forwarded-For X-Remote-IP X-Remote-Addr X-Client-IP X-Forwarded-Host X-Real-IP True-Client-IP CF-Connecting-IP X-Cluster-Client-IP Fastly-Client-IP Forwarded " />
 <meta name="keywords" content="" />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="/posts/clear-adobe-connectoricons/" />
+<link rel="canonical" href="/posts/x-forwarded-for/" />
 
 
 
@@ -35,9 +36,10 @@
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Adobe Acrobat ConnectorIcons">
-<meta property="og:description" content="Adobe Acrobat filling up a ConnectorIcons folder in the user profile" />
-<meta property="og:url" content="/posts/clear-adobe-connectoricons/" />
+<meta property="og:title" content="Incomplete list of X-Forwarded-For style headers">
+<meta property="og:description" content="These HTTP headers can be used to trick a misconfigured web server into thinking you are a proxy for another connection
+X-Originating-IP X-Forwarded-For X-Remote-IP X-Remote-Addr X-Client-IP X-Forwarded-Host X-Real-IP True-Client-IP CF-Connecting-IP X-Cluster-Client-IP Fastly-Client-IP Forwarded " />
+<meta property="og:url" content="/posts/x-forwarded-for/" />
 <meta property="og:site_name" content="The Generalist Cookbook" />
 
   
@@ -48,7 +50,7 @@
 <meta property="og:image:height" content="1024">
 
 
-  <meta property="article:published_time" content="2021-07-06 12:29:00 &#43;0000 UTC" />
+  <meta property="article:published_time" content="2021-07-24 16:11:25 &#43;0000 UTC" />
 
 
 
@@ -87,11 +89,11 @@
     
 <div class="post">
   <h1 class="post-title">
-    <a href="/posts/clear-adobe-connectoricons/">Adobe Acrobat ConnectorIcons</a></h1>
+    <a href="/posts/x-forwarded-for/">Incomplete list of X-Forwarded-For style headers</a></h1>
   <div class="post-meta">
     
       <span class="post-date">
-        2021-07-06 
+        2021-07-24 
       </span>
     
     
@@ -104,25 +106,20 @@
   
 
   <div class="post-content"><div>
-        <ul>
-<li>I have seen this a lot on Citrix app servers, not so much RDS boxes for some reason, the user&rsquo;s profiles will fill up because of:</li>
-</ul>
-<blockquote>
-<p>C:\Users\xyz\AppData\LocalLow\Adobe\Acrobat\DC\ConnectorIcons\xyz.bmp</p>
-</blockquote>
-<ul>
-<li>
-<p>Still not sure what causes this but they are just cached icons of documents</p>
-</li>
-<li>
-<p>You can safely delete them for all users using the following powershell script:</p>
-</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-ChildItem C:\Users | Foreach-Object { Remove-Item -Path <span style="color:#e6db74">&#34;C:\Users\$_\AppData\LocalLow\Adobe\Acrobat\DC\ConnectorIcons\*.bmp&#34;</span> -ErrorAction SilentlyContinue -Force -Recurse }
-</code></pre></div><ul>
-<li>Can even make it a scheduled task - who cares</li>
-</ul>
-
+        <p>These HTTP headers can be used to trick a misconfigured web server into thinking you are a proxy for another connection</p>
+<pre><code>X-Originating-IP
+X-Forwarded-For
+X-Remote-IP
+X-Remote-Addr
+X-Client-IP
+X-Forwarded-Host
+X-Real-IP
+True-Client-IP
+CF-Connecting-IP
+X-Cluster-Client-IP
+Fastly-Client-IP
+Forwarded
+</code></pre>
       </div></div>
 
   
@@ -134,17 +131,10 @@
     </div>
     <div class="pagination__buttons">
         
-        <span class="button previous">
-            <a href="/posts/x-forwarded-for/">
-                <span class="button__icon">←</span>
-                <span class="button__text">Incomplete list of X-Forwarded-For style headers</span>
-            </a>
-        </span>
-        
         
         <span class="button next">
-            <a href="/posts/rclone-on-windows/">
-                <span class="button__text">Rclone on Windows</span>
+            <a href="/posts/clear-adobe-connectoricons/">
+                <span class="button__text">Adobe Acrobat ConnectorIcons</span>
                 <span class="button__icon">→</span>
             </a>
         </span>
